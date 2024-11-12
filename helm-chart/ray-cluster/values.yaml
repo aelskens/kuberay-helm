@@ -170,7 +170,7 @@ worker:
       emptyDir: {}
     - name: data
       persistentVolumeClaim:
-        claimName: ""
+        claimName: "test-pvc"
   volumeMounts:
     - mountPath: /tmp/ray
       name: log-volume
@@ -239,7 +239,7 @@ additionalWorkerGroups:
         emptyDir: {}
       - name: data
         persistentVolumeClaim:
-          claimName: ""
+          claimName: "test-pvc"
     volumeMounts:
       - mountPath: /tmp/ray
         name: log-volume

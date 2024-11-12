@@ -235,11 +235,16 @@ additionalWorkerGroups:
     # Optional: The following volumes/volumeMounts configurations are optional but recommended because
     # Ray writes logs to /tmp/ray/session_latests/logs instead of stdout/stderr.
     volumes:
-      - name: log-volume
-        emptyDir: {}
-    volumeMounts:
-      - mountPath: /tmp/ray
-        name: log-volume
+    - name: log-volume
+      emptyDir: {}
+    - name: data
+      persistentVolumeClaim:
+        claimName: ""
+  volumeMounts:
+    - mountPath: /tmp/ray
+      name: log-volume
+    - mountPath: /data
+      name: data
     sidecarContainers: []
     # See docs/guidance/pod-command.md for more details about how to specify
     # container command for worker Pod.

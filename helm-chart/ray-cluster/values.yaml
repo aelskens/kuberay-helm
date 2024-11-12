@@ -168,9 +168,14 @@ worker:
   volumes:
     - name: log-volume
       emptyDir: {}
+    - name: data
+      persistentVolumeClaim:
+        claimName: ""
   volumeMounts:
     - mountPath: /tmp/ray
       name: log-volume
+    - mountPath: /data
+      name: data
   # sidecarContainers specifies additional containers to attach to the Ray pod.
   # Follows standard K8s container spec.
   sidecarContainers: []
